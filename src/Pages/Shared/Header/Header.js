@@ -16,11 +16,22 @@ const Header = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li className="nav-item ms-2 fs-5 fw-medium">
-                                <Link className="nav-link text-dark" to="/home">Home</Link>
+                            <li className="nav-item ms-2 fs-6 fw-medium">
+                                <Link className="nav-link text-muted" to="/home">Home</Link>
                             </li>
-                            <li className="nav-item ms-2 fs-5 fw-medium text-nowrap">
-                                <Link className="nav-link text-dark" to="/blog">Donation Process</Link>
+                            <li class="nav-item dropdown ms-2 fs-6 fw-medium text-nowrap">
+                                <a class="nav-link dropdown-toggle text-muted" href="#home" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Donation Process
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <Link class="dropdown-item text-muted" to="/donationProcess" target='_blank'>Blood Donation Process</Link>
+                                    </li>
+                                    <hr className='m-0 p-1'/>
+                                    <li>
+                                        <Link class="dropdown-item text-muted" to="/donationBenefit" target='_blank'>Benefit of Donating Blood</Link>
+                                    </li>
+                                </ul>
                             </li>
                             {/* {
                                 user &&

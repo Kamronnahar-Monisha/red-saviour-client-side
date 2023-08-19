@@ -9,25 +9,47 @@ import toast from 'react-hot-toast';
 const Register = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [signUpError, setSignUPError] = useState('');
-    const { createUser, createProfile } = useContext(AuthContext);
+    const { createUser, createProfile} = useContext(AuthContext);
     const navigate = useNavigate();
+    const imgApiKey = process.env.REACT_APP_imagebb_apikey;
+
 
     const handleSignUp = (data) => {
         console.log(data);
         setSignUPError('');
-        createUser(data.email, data.password)
+
+
+        //hosting image file to imagebb and got the image url
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image',image);
+        const url = `https://api.imgbb.com/1/upload?key=${imgApiKey}`;
+        fetch(url,{
+            method:'POST',
+            body: formData
+        })
+        .then(res=>res.json())
+        .then(imgData=>{
+            console.log(imgData);
+            const imgUrl = imgData.data.url;
+
+            //creating firebase user
+            createUser(data.email, data.password)
             .then((result) => {
                 reset();
                 toast.success('User Created Successfully.');
-                console.log(data);
-                createProfileInformation(data.name," ", data);
+                createProfileInformation(data.name,imgUrl, data);
             })
             .catch((error) => {
                 setSignUPError(error.message);
             })
-
+        })
+        .catch(error => {
+            console.log(error.message);
+        })
     }
 
+    //creating firebase profile
     const createProfileInformation = (name, photoURL, data) => {
         const profile = {
             displayName: name,
@@ -35,7 +57,7 @@ const Register = () => {
         }
         createProfile(profile)
             .then(() => {
-                 saveUser(data);
+                saveUser(data);
             })
             .catch((error) => {
                 console.log(error.message);
@@ -43,22 +65,23 @@ const Register = () => {
     }
 
 
+    //saving user to database
     const saveUser = (data) => {
         const user = {
-         "name": data.name,
-         "email": data.email,
-         "phone": data.phone,
-         "division": data.division,
-         "address": data.division,
-         "dateOfBirth": data.dateOfBirth,
-         "bloodType": data.bloodType,
-         "diabetes": data.diabetes,
-         "smoker": data.smoker,
-         "rating":0,
-         "donation":0,
-         "Status":"available",
-         "donationTime":"",
-         "role": "user"
+            "name": data.name,
+            "email": data.email,
+            "phone": data.phone,
+            "division": data.division,
+            "address": data.division,
+            "dateOfBirth": data.dateOfBirth,
+            "bloodType": data.bloodType,
+            "diabetes": data.diabetes,
+            "smoker": data.smoker,
+            "rating": 0,
+            "donation": 0,
+            "Status": "available",
+            "donationTime": "",
+            "role": "user"
         };
         fetch('http://localhost:5000/users', {
             method: 'POST',
@@ -69,14 +92,14 @@ const Register = () => {
         })
             .then(res => res.json())
             .then(data => {
-                 console.log(data);
-                 navigate('/');
+                console.log(data);
+                navigate('/');
             })
     }
 
     return (
         <div className='container py-5'>
-            <div className="row justify-content-around align-items-center pb-5 pt-4 gy-5">
+            <div className="row justify-content-around align-items-start pb-5 pt-4 gy-5">
                 <div className="col-lg-6">
                     <img src={registerImg} alt="A girl log in a website" className='w-100' />
                 </div>
@@ -84,13 +107,13 @@ const Register = () => {
                     <div className='theme-color-shadow rounded p-5'>
                         <h3 className='theme-color-red fw-bolder'>Please Register Your Account !!</h3>
                         <form onSubmit={handleSubmit(handleSignUp)}>
-                            <div className="mb-3">
+                            `  <div className="mb-3">
                                 <label htmlFor="fullName" className="form-label text-muted fw-bold">Full Name</label>
                                 <input type="text" {...register("name", {
                                     required: "Name is Required"
                                 })} className="form-control" id="fullName" />
                                 {errors.name && <p className='text-danger'>{errors.name.message}</p>}
-                            </div>
+                            </div>`
                             <div className="mb-3">
                                 <label htmlFor="mail" className="form-label text-muted fw-bold">Email address</label>
                                 <input type="email" {...register("email", {
@@ -106,6 +129,13 @@ const Register = () => {
                                     pattern: { value: /(?=.*[A-Z])(?=.*[0-9])/, message: 'Password must have uppercase character and number' }
                                 })} className="form-control" id="Password" />
                                 {errors.password && <p className='text-danger'>{errors.password.message}</p>}
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="image" className="form-label text-muted fw-bold">Image</label>
+                                <input type="file" {...register("image", {
+                                    required: "Image is Required"
+                                })} className="form-control" id="image" />
+                                {errors.image && <p className='text-danger'>{errors.image.message}</p>}
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="division" className="form-label text-muted fw-bold">Division</label>
@@ -159,7 +189,7 @@ const Register = () => {
                                 </select>
                                 {errors.bloodType && <p className='text-danger'>{errors.bloodType.message}</p>}
                             </div>
-                            
+
                             <div className="mb-3 form-check">
                                 <input type="checkbox" {...register("smoker", {
                                 })} className="form-check-input" id="smoker" />

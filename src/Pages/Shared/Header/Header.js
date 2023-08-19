@@ -25,11 +25,11 @@ const Header = () => {
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <Link class="dropdown-item text-muted" to="/donationProcess" target='_blank'>Blood Donation Process</Link>
+                                        <Link class="dropdown-item text-muted" to="/donationProcess">Blood Donation Process</Link>
                                     </li>
                                     <hr className='m-0 p-1'/>
                                     <li>
-                                        <Link class="dropdown-item text-muted" to="/donationBenefit" target='_blank'>Benefit of Donating Blood</Link>
+                                        <Link class="dropdown-item text-muted" to="/donationBenefit">Benefit of Donating Blood</Link>
                                     </li>
                                 </ul>
                             </li>

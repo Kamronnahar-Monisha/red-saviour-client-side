@@ -4,6 +4,8 @@ import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import Main from "../Layout/Main";
 import DonationProcess from "../Pages/DonationProcess/DonationProcess/DonationProcess";
 import DonationBenefit from "../Pages/DonationBenefit/DonationBenefit/DonationBenefit";
+import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
 
 
 export const router = createBrowserRouter([
@@ -18,6 +20,14 @@ export const router = createBrowserRouter([
             {
                 path: '/home',
                 element: <Home></Home>
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/register',
+                element: <Register></Register>
             },
             {
                 path: '/donationProcess',

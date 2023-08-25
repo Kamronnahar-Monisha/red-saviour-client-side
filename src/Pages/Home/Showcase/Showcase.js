@@ -15,7 +15,7 @@ const Showcase = () => {
                         <p className='py-2 pe-3 showcase-paragraph'>
                             It is said that blood is one of the most priceless gifts one can give to another. Blood is essential for a person to stay alive. People who step up to donate their blood are real-life superheroes.
                         </p>
-                        <Link to="/services" className='btn-custom rounded'>Get Blood</Link>
+                        <Link to="/post" className='btn-custom rounded'>Get Blood</Link>
                     </div>
                     <div className="col-lg-6 order-1 order-lg-2">
                         <img src={showcaseImg} alt="blood donation" className='w-100' />

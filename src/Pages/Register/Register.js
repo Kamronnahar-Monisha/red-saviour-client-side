@@ -178,14 +178,14 @@ const Register = () => {
                             <div className="mb-3">
                                 <label htmlFor="blood-type" className="form-label text-muted fw-bold">Blood Type</label>
                                 <select  {...register('bloodType', { required: "Blood Type is required" })} className="form-select" aria-label="Default select" id="blood-type">
-                                    <option value="a+" selected>A+</option>
-                                    <option value="a-">A-</option>
-                                    <option value="b+">B+</option>
-                                    <option value="b-">B-</option>
-                                    <option value="o+">O+</option>
-                                    <option value="o-">O-</option>
-                                    <option value="ab+">AB+</option>
-                                    <option value="ab-">AB-</option>
+                                    <option value="aP" selected>A+</option>
+                                    <option value="aN">A-</option>
+                                    <option value="bP">B+</option>
+                                    <option value="bN">B-</option>
+                                    <option value="oP">O+</option>
+                                    <option value="oN">O-</option>
+                                    <option value="abP">AB+</option>
+                                    <option value="abN">AB-</option>
                                 </select>
                                 {errors.bloodType && <p className='text-danger'>{errors.bloodType.message}</p>}
                             </div>

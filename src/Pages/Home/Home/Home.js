@@ -1,7 +1,6 @@
 import React from 'react';
 import './Home.css';
 import Showcase from '../Showcase/Showcase';
-import { Link } from 'react-router-dom';
 
 const Home = () => {
 
@@ -16,12 +15,6 @@ const Home = () => {
             <div style={homeBg}>
                 <Showcase></Showcase>
             </div>
-            <Link to="/login" className='me-3'>
-                <button className='btn-sm theme-button'>LogIn</button>
-            </Link>
-            <Link to="/register" className='me-3'>
-                <button className='btn-sm theme-button'>register</button>
-            </Link>
         </div>
     );
 };

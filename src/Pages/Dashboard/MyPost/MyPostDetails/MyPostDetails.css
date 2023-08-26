@@ -1,0 +1,10 @@
+.accordion-custom-style:active,.accordion-custom-style:focus,.accordion-custom-style{
+    background-color: white !important;
+    border-color:2px solid rgb(15, 81, 15) !important;
+    box-shadow: none;
+    color:rgb(15, 81, 15) !important;
+    font-size: 18px;
+}
+.accordion-item{
+    border:none !important;
+}

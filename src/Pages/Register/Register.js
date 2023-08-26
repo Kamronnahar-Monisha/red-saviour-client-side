@@ -57,7 +57,7 @@ const Register = () => {
         }
         createProfile(profile)
             .then(() => {
-                saveUser(data);
+                saveUser(data,photoURL);
             })
             .catch((error) => {
                 console.log(error.message);
@@ -66,10 +66,11 @@ const Register = () => {
 
 
     //saving user to database
-    const saveUser = (data) => {
+    const saveUser = (data,photoURL) => {
         const user = {
             "name": data.name,
             "email": data.email,
+            "photoURL" : photoURL,
             "phone": data.phone,
             "division": data.division,
             "address": data.division,

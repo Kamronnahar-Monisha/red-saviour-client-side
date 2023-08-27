@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './EachDonor.css';
 
-const EachDonor = ({ post, currentDonor }) => {
+const EachDonor = ({ post, currentDonor,postsRefetch }) => {
     const [donorDetails, setDonorDetails] = useState({});
-    const [donorStatus, setDonorStatus] = useState(currentDonor.status);
-    const [isDelete, SetIsDelete] = useState(false);
 
     //fetching donor details
     useEffect(() => {
@@ -17,7 +15,6 @@ const EachDonor = ({ post, currentDonor }) => {
 
     //handle shortlist button and remove button
     const handleDonorList = (shortListStatus) => {
-        setDonorStatus(shortListStatus);
         const donor = {
             donorId: currentDonor.donorId,
             status: shortListStatus,
@@ -25,7 +22,7 @@ const EachDonor = ({ post, currentDonor }) => {
             feedback: ''
         };
 
-        fetch(`http://localhost:5000/update-donors?id=${post._id}`, {
+        fetch(`http://localhost:5000/update-donors?id=${post._id}&purpose=add`, {
             method: 'PATCH',
             headers: {
                 'Content-type': 'application/json'
@@ -36,6 +33,7 @@ const EachDonor = ({ post, currentDonor }) => {
             .then((data => {
                 if (data[0].acknowledged) {
                     console.log(data);
+                    postsRefetch();
                 }
             }))
             .catch(error => alert(error.massage));
@@ -45,9 +43,8 @@ const EachDonor = ({ post, currentDonor }) => {
 
     //handle delete button
     const handleDelete = () => {
-        const deletePost = true;
         const donor = currentDonor;
-        fetch(`http://localhost:5000/update-donors?id=${post._id}&delete=${deletePost}`,{
+        fetch(`http://localhost:5000/update-donors?id=${post._id}&purpose=delete`,{
             method: 'PATCH',
             headers: {
                 'Content-type': 'application/json'
@@ -56,9 +53,9 @@ const EachDonor = ({ post, currentDonor }) => {
         })
             .then(res => res.json())
             .then((data => {
-                SetIsDelete(true);
                 if (data[0].acknowledged) {
                     console.log(data);
+                    postsRefetch();
                 }
             }))
             .catch(error => alert(error.massage));
@@ -67,7 +64,6 @@ const EachDonor = ({ post, currentDonor }) => {
     return (
         <>
             {
-                !isDelete &&
                 <div className='col-8 my-2 rounded p-2 shadow'>
                     <div className="row">
                         <div className="col-1">
@@ -78,10 +74,10 @@ const EachDonor = ({ post, currentDonor }) => {
                         </div>
                         <div className="col-7">
                             {
-                                donorStatus === 'interested'?
+                                currentDonor.status === 'interested'?
                                     <button className="btn btn-sm btn-primary" onClick={() => handleDonorList('shortlisted')}>Short list</button>
                                     :
-                                    <button className="btn btn-sm btn-secondary">{donorStatus}</button>
+                                    <button className="btn btn-sm btn-secondary">{currentDonor.status}</button>
                             }
                             <button className="ms-3 btn btn-sm btn-warning" onClick={() => handleDonorList('interested')}>Remove</button>
                             <button className="ms-3 btn btn-sm btn-danger" onClick={handleDelete}>Delete</button>

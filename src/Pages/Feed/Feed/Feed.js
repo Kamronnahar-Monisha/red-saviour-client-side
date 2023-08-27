@@ -26,9 +26,8 @@ const Feed = () => {
         <div className='container py-5'>
                 <div className="row justify-content-center gy-5">
                     {
-                        postsWithSameBloodType?
-                            postsWithSameBloodType.map(post => <EachPost key={post._id} post={post} user={userDetails}></EachPost>) :
-                            <Loader></Loader>
+                            postsWithSameBloodType.map(post => <EachPost key={post._id} post={post} user={userDetails}></EachPost>)
+                            
                     }
                 </div>
         </div>

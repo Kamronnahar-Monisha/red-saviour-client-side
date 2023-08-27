@@ -44,7 +44,7 @@ const EachPost = ({ post, user }) => {
             feedback: ''
         };
 
-        fetch(`http://localhost:5000/update-donors?id=${post._id}`, {
+        fetch(`http://localhost:5000/update-donors?id=${post._id}&purpose=add`, {
             method: 'PATCH',
             headers: {
                 'Content-type': 'application/json'

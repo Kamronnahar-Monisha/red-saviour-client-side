@@ -3,7 +3,7 @@ import './MyPostDetails.css';
 import EachDonor from '../EachDonor/EachDonor';
 import { toast } from 'react-hot-toast';
 
-const MyPostDetails = ({ post, userDetails, index, postsRefetch }) => {
+const MyPostDetails = ({ post, userDetails, index, postsRefetch,setEachPost }) => {
     const [type, setType] = useState('');
 
     useEffect(() => {
@@ -72,17 +72,6 @@ const MyPostDetails = ({ post, userDetails, index, postsRefetch }) => {
     }
 
 
-
-
-
-    //closed button handler
-    const handleCloseButton = ()=>{
-        
-    }
-
-
-
-
     return (
         <div className='col-10 theme-color-shadow p-5 rounded'>
             <div className="row justify-content-between">
@@ -125,7 +114,7 @@ const MyPostDetails = ({ post, userDetails, index, postsRefetch }) => {
                                                         'Confirm'
                                                 }
                                             </button>
-                                            <button className="btn btn-secondary ms-3">Close Post</button>
+                                            <button onClick={() => setEachPost(post)}  className='btn btn-secondary ms-3' data-bs-toggle="modal" data-bs-target="#closedButtonModal">Close Post</button>
                                         </div>
                                         :
                                         <div className='mt-3'>

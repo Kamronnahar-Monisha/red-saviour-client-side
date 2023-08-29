@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import './MyPostDetails.css';
 import EachDonor from '../EachDonor/EachDonor';
 import { toast } from 'react-hot-toast';
+import ConfirmedDonor from '../ConfirmedDonor/ConfirmedDonor';
 
-const MyPostDetails = ({ post, userDetails, index, postsRefetch,setEachPost }) => {
+const MyPostDetails = ({ post, userDetails, index, postsRefetch, setEachPost }) => {
     const [type, setType] = useState('');
+    const confirmedUsers = post?.donors?.filter(donor => donor.status === 'confirmed');
+
 
     useEffect(() => {
         let bloodType = post.bloodType.toUpperCase();
@@ -88,45 +91,57 @@ const MyPostDetails = ({ post, userDetails, index, postsRefetch,setEachPost }) =
                 </div>
             </div>
             {
-                (post.status !== 'closed') &&
-                <div className="accordion" id="accordionExample">
-                    <div className="accordion-item">
-                        <h2 className="accordion-header">
-                            <button className="accordion-button border border-success accordion-custom-style" type="button" data-bs-toggle="collapse" data-bs-target={"#collapse" + index} aria-expanded="true" aria-controls={"collapse" + index}>
-                                Select Donor
-                            </button>
-                        </h2>
-                        <div id={"collapse" + index} className="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
-                                <div className="row">
+                (post.status !== 'closed') ?
+                    <div className="accordion" id="accordionExample">
+                        <div className="accordion-item">
+                            <h2 className="accordion-header">
+                                <button className="accordion-button border border-success accordion-custom-style" type="button" data-bs-toggle="collapse" data-bs-target={"#collapse" + index} aria-expanded="true" aria-controls={"collapse" + index}>
+                                    Select Donor
+                                </button>
+                            </h2>
+                            <div id={"collapse" + index} className="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                                <div className="accordion-body">
+                                    <div className="row">
+                                        {
+                                            post.donors.map(donor => <EachDonor key={post._id} post={post} currentDonor={donor} postsRefetch={postsRefetch}></EachDonor>)
+                                        }
+                                    </div>
                                     {
-                                        post.donors.map(donor => <EachDonor key={post._id} post={post} currentDonor={donor} postsRefetch={postsRefetch}></EachDonor>)
+                                        post.donors.length ?
+                                            <div className='mt-3'>
+                                                <button className="btn btn-success" onClick={handleConfirm}>
+                                                    {
+                                                        (post.status === 'waiting') ?
+                                                            'Re-confirm'
+                                                            :
+                                                            'Confirm'
+                                                    }
+                                                </button>
+                                                <button onClick={() => setEachPost(post)} className='btn btn-secondary ms-3' data-bs-toggle="modal" data-bs-target="#closedButtonModal">Close Post</button>
+                                            </div>
+                                            :
+                                            <div className='mt-3'>
+                                                <p className='text-center text-success fs-5'>
+                                                    Sorry this post don't have any interested donor yet.
+                                                </p>
+                                            </div>
                                     }
                                 </div>
-                                {
-                                    post.donors.length ?
-                                        <div className='mt-3'>
-                                            <button className="btn btn-success" onClick={handleConfirm}>
-                                                {
-                                                    (post.status === 'waiting') ?
-                                                        'Re-confirm'
-                                                        :
-                                                        'Confirm'
-                                                }
-                                            </button>
-                                            <button onClick={() => setEachPost(post)}  className='btn btn-secondary ms-3' data-bs-toggle="modal" data-bs-target="#closedButtonModal">Close Post</button>
-                                        </div>
-                                        :
-                                        <div className='mt-3'>
-                                            <p className='text-center text-success fs-5'>
-                                                Sorry this post don't have any interested donor yet.
-                                            </p>
-                                        </div>
-                                }
                             </div>
                         </div>
                     </div>
-                </div>
+                    :
+                    <div>
+                        {
+                            (confirmedUsers.length !== 0) && <h5 className='mt-3 mb-2 text-success'>All Selected Donors:</h5>
+                        }
+                        <div className="row">
+                            {
+                                confirmedUsers?.map(donor => <ConfirmedDonor key={donor.donorId} donor={donor}></ConfirmedDonor>)
+                            }
+                        </div>
+                        <button className='btn btn-secondary mt-3'>Post Closed</button>
+                    </div>
             }
         </div>
     );

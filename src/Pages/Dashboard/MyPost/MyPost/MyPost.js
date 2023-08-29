@@ -41,7 +41,7 @@ const MyPost = () => {
 
                 }
             </div>
-            <CloseButtonModal eachPost={eachPost}></CloseButtonModal>
+            <CloseButtonModal eachPost={eachPost} postsRefetch={refetch} ></CloseButtonModal>
         </div>
     );
 };

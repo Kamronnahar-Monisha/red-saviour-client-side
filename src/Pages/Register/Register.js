@@ -79,7 +79,7 @@ const Register = () => {
             "diabetes": data.diabetes,
             "smoker": data.smoker,
             "rating": 0,
-            "donation": 0,
+            "donatedPost": "",
             "Status": "available",
             "donationTime": "",
             "role": "user"

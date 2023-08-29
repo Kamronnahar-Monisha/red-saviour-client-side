@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './EachPost.css';
+import { confirmAlert } from 'react-confirm-alert';
+import { toast } from 'react-hot-toast';
 
 const EachPost = ({ post, user }) => {
     const [patientDetails, setPatientDetails] = useState({});
@@ -36,6 +38,63 @@ const EachPost = ({ post, user }) => {
 
 
     //handler for interested button
+    // function handleInterested() {
+    //     if (user.status === 'confirmed') {
+    //         confirmAlert({
+    //             message: `You was confirmed for a donation post on ${user.donationTime}. Did you donation process cancel?`,
+    //             buttons: [
+    //                 {
+    //                     label: 'Yes',
+    //                     onClick: () => {
+    //                         fetch(`http://localhost:5000/update-user-status?id=${user._id}&status=available`, {
+    //                             method: 'PATCH',
+    //                             headers: {
+    //                                 'Content-type': 'application/json'
+    //                             }
+    //                         })
+    //                             .then(res => res.json())
+    //                             .then(data => {
+    //                                 console.log(data);
+    //                                 const donor = {
+    //                                     donorId: user._id,
+    //                                     status: 'interested',
+    //                                     rating: 0,
+    //                                     feedback: ''
+    //                                 };
+
+    //                                 fetch(`http://localhost:5000/update-donors?id=${post._id}&purpose=add`, {
+    //                                     method: 'PATCH',
+    //                                     headers: {
+    //                                         'Content-type': 'application/json'
+    //                                     },
+    //                                     body: JSON.stringify({ donor })
+    //                                 })
+    //                                     .then(res => res.json())
+    //                                     .then((data => {
+    //                                         if (data[0].acknowledged) {
+    //                                             console.log(data);
+    //                                             setUserStatusInThisPost(data[1].status);
+    //                                         }
+    //                                     }))
+    //                                     .catch(error => alert(error.massage));
+    //                             })
+    //                             .catch(error => console.log(error.message))
+    //                     }
+    //                 },
+    //                 {
+    //                     label: 'No',
+    //                     onClick: () => {
+    //                         toast.error("You are already selected for another donation. So you can not apply for this donation now.")
+    //                     }
+    //                 }
+    //             ]
+    //         });
+    //     }
+    // }
+
+
+
+    //handler for interested button
     function handleInterested() {
         const donor = {
             donorId: user._id,
@@ -60,6 +119,12 @@ const EachPost = ({ post, user }) => {
             }))
             .catch(error => alert(error.massage));
     }
+
+
+
+
+
+
 
     console.log(post);
     return (

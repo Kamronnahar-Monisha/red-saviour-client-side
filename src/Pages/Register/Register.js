@@ -73,7 +73,7 @@ const Register = () => {
             "photoURL" : photoURL,
             "phone": data.phone,
             "division": data.division,
-            "address": data.division,
+            "address": data.address,
             "dateOfBirth": data.dateOfBirth,
             "bloodType": data.bloodType,
             "diabetes": data.diabetes,

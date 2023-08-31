@@ -8,10 +8,10 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Post from "../Pages/Post/Post";
 import Profile from "../Pages/Profile/Profile/Profile";
-import Setting from "../Pages/SettingPage/Setting";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import PrivateRoute from "../routes/PrivateRoute/PrivateRoute";
 import Feed from "../Pages/Feed/Feed/Feed";
+import Notification from "../Pages/Notification/Notification";
 
 
 export const router = createBrowserRouter([
@@ -48,8 +48,8 @@ export const router = createBrowserRouter([
                 element: <Profile></Profile>
             },
             {
-                path: '/setting',
-                element: <Setting></Setting>
+                path: '/notification',
+                element: <Notification></Notification>
             },
             {
                 path: '/dashboard',

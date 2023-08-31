@@ -72,7 +72,7 @@ const Header = () => {
                                                 </li>
                                                 <hr className='m-0 p-1' />
                                                 <li>
-                                                    <Link class="dropdown-item text-muted" to="/setting">Setting</Link>
+                                                    <Link class="dropdown-item text-muted" to="/notification">Notification</Link>
                                                 </li>
                                                 <hr className='m-0 p-1' />
                                                 <li>

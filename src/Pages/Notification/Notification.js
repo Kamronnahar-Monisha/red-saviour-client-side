@@ -1,7 +1,7 @@
 import React from 'react';
-import './Setting.css';
+import './Notification.css';
 
-const Setting = () => {
+const Notification = () => {
     return (
         <div>
             
@@ -9,4 +9,4 @@ const Setting = () => {
     );
 };
 
-export default Setting;
+export default Notification;

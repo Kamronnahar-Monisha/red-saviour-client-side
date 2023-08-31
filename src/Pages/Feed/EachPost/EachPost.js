@@ -131,7 +131,7 @@ const EachPost = ({ post, user }) => {
         <div className='col-10 theme-color-shadow p-5 rounded'>
             <div className="row justify-content-between">
                 <div className='col-6'>
-                    <p className='fs-6 fw-semibold'>Posted by {patientDetails.name}</p>
+                    <p className='fs-6 fw-semibold'>Posted by <span className='text-success'>{patientDetails.name}</span></p>
                     <p>Required Blood group: {type}</p>
                     <p>Blood Amount(in bags): {post.bloodAmount} bags</p>
                     <p>Reason : {post.reason}</p>

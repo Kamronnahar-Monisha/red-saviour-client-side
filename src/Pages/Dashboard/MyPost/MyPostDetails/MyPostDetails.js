@@ -79,7 +79,7 @@ const MyPostDetails = ({ post, userDetails, index, postsRefetch, setEachPost }) 
         <div className='col-10 theme-color-shadow p-5 rounded'>
             <div className="row justify-content-between">
                 <div className='col-6'>
-                    <p className='fs-4 fw-semibold'>Posted by {userDetails.name}</p>
+                    <p className='fs-4 fw-semibold text-success'>Posted by <span className='text-success'>{userDetails.name}</span></p>
                     <p>Required Blood group: {type}</p>
                     <p>Blood Amount(in bags): {post.bloodAmount} bags</p>
                     <p>Reason : {post.reason}</p>

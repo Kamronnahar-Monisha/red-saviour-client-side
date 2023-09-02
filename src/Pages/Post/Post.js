@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const Post = () => {
     const { register, reset, formState: { errors }, handleSubmit } = useForm();
@@ -65,13 +66,16 @@ const Post = () => {
                     toast.success('Successfully added a post .');
                     navigate('/dashboard/MyPosts')
                 })
-           
+
         }
     }
 
 
     return (
-        <div className='d-flex justify-content-center align-items-center mt-5'>
+        <div className='d-flex justify-content-center align-items-center my-5'>
+            <Helmet>
+                <title>Create Post</title>
+            </Helmet>
             <div className='col-lg-7'>
                 <div className='theme-color-shadow rounded p-5'>
                     <h3 className='theme-color-red fw-bolder text-center mb-5'>Request For Blood</h3>

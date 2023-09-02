@@ -76,9 +76,9 @@ const MyPostDetails = ({ post, userDetails, index, postsRefetch, setEachPost }) 
 
 
     return (
-        <div className='col-10 box-shadow p-5 rounded'>
+        <div className='col-11 box-shadow p-5 rounded'>
             <div className="row justify-content-between">
-                <div className='col-6'>
+                <div className='col-12 col-lg-6 order-2 order-lg-1'>
                     <p className='fs-4 fw-semibold text-success'>Posted by <span className='text-success'>{userDetails.name}</span></p>
                     <p>Required Blood group: {type}</p>
                     <p>Blood Amount(in bags): {post.bloodAmount} bags</p>
@@ -86,7 +86,7 @@ const MyPostDetails = ({ post, userDetails, index, postsRefetch, setEachPost }) 
                     <p>Hospital Address: {post.hospitalAddress}</p>
                     <p>Date: {post.donationDate}</p>
                 </div>
-                <div className='col-4'>
+                <div className='col-12 col-lg-4 order-1 order-lg-2 mb-2 mb-lg-0'>
                     <button className='btn btn-sm btn-warning me-3'>{post.status}</button>
                 </div>
             </div>
@@ -117,11 +117,11 @@ const MyPostDetails = ({ post, userDetails, index, postsRefetch, setEachPost }) 
                                                             'Confirm'
                                                     }
                                                 </button>
-                                                <button onClick={() => setEachPost(post)} className='btn btn-secondary ms-3' data-bs-toggle="modal" data-bs-target="#closedButtonModal">Close Post</button>
+                                                <button onClick={() => setEachPost(post)} className='btn btn-secondary ms-lg-3 ms-1' data-bs-toggle="modal" data-bs-target="#closedButtonModal">Close Post</button>
                                             </div>
                                             :
                                             <div className='mt-3'>
-                                                <p className='text-center text-success fs-5'>
+                                                <p className='text-center text-success fs-lg-5'>
                                                     Sorry this post don't have any interested donor yet.
                                                 </p>
                                             </div>

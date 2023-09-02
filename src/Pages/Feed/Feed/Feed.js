@@ -3,6 +3,7 @@ import './Feed.css';
 import { AuthContext } from '../../../Context/AuthProvider';
 import EachPost from '../EachPost/EachPost';
 import Loader from '../../Shared/Loader/Loader';
+import { Helmet } from 'react-helmet';
 
 const Feed = () => {
     const { user } = useContext(AuthContext);
@@ -28,7 +29,7 @@ const Feed = () => {
                 const sortedPostFromOtherDivision = postFromOtherDivision.sort((a, b) => (a.donationDate > b.donationDate) ? 1 : (a.donationDate < b.donationDate) ? -1 : 0);
                 const sortedPosFromOtherDivisionWithoutWaitingStatus = sortedPostFromOtherDivision.filter(eachPost => eachPost.status !== 'waiting');
                 const sortedPostFromOtherDivisionOfWaitingStatus = sortedPostFromOtherDivision.filter(eachPost => eachPost.status === 'waiting');
-                const finalSortedPost = [...sortedPostFromDhakaWithoutWaitingStatus, ...sortedPosFromOtherDivisionWithoutWaitingStatus, ...sortedPostFromDhakaOfWaitingStatus,...sortedPostFromOtherDivisionOfWaitingStatus];
+                const finalSortedPost = [...sortedPostFromDhakaWithoutWaitingStatus, ...sortedPosFromOtherDivisionWithoutWaitingStatus, ...sortedPostFromDhakaOfWaitingStatus, ...sortedPostFromOtherDivisionOfWaitingStatus];
                 console.log(finalSortedPost);
                 setPostsWithSameBloodType(finalSortedPost);
             });
@@ -37,6 +38,9 @@ const Feed = () => {
 
     return (
         <div className='container py-5'>
+            <Helmet>
+                <title>Feed</title>
+            </Helmet>
             <div className="row justify-content-center gy-5">
                 {
                     postsWithSameBloodType.map(post => <EachPost key={post._id} post={post} user={userDetails}></EachPost>)

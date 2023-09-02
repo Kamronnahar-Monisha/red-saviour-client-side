@@ -133,8 +133,8 @@ const EachPost = ({ post, user }) => {
     console.log(post);
     return (
         <div className='col-10 box-shadow p-5 rounded'>
-            <div className="row justify-content-between">
-                <div className='col-6'>
+            <div className="row justify-content-between gy-3">
+                <div className='col-12 col-lg-6 order-2 order-lg-1'>
                     <p className='fs-6 fw-semibold'>Posted by <Link to={`/profile/${patientDetails.email}`} className='text-success text-decoration-none'>{patientDetails.name}</Link></p>
                     <p>Required Blood group: {type}</p>
                     <p>Blood Amount(in bags): {post.bloodAmount} bags</p>
@@ -148,7 +148,7 @@ const EachPost = ({ post, user }) => {
                             <button className='btn btn btn-success' onClick={handleInterested}>Interested</button>
                     }
                 </div>
-                <div className='col-3'>
+                <div className='col-12 col-lg-3 order-1 order-lg-2'>
                     <button className='btn btn-sm btn-warning me-3'>{post.status}</button>
                     <button className='btn btn-sm btn-danger' onClick={handleReport}>Report</button>
                 </div>

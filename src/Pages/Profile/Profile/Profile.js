@@ -5,6 +5,7 @@ import ProfilePost from '../ProfilePost/ProfilePost';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { confirmAlert } from 'react-confirm-alert';
 import { addReport } from '../../../hooks/useReport';
+import { Helmet } from 'react-helmet';
 
 const Profile = () => {
     const { user } = useContext(AuthContext);
@@ -79,11 +80,14 @@ const Profile = () => {
 
     return (
         <div className='profile m-5'>
+            <Helmet>
+                <title>Profile</title>
+            </Helmet>
             <div className="container">
-                <div className="row justify-content-around">
-                    <div className="col-5 rounded box-shadow p-3 fw-semibold align-self-start">
+                <div className="row justify-content-around gy-5">
+                    <div className="col-12 col-lg-4 rounded box-shadow p-3 fw-semibold align-self-start">
                         <div className="row g-3">
-                            <div className="col-8 text-center">
+                            <div className="col-8 text-lg-center text-end">
                                 <img src={profileOwner.photoURL} alt="blood donation" width="150" height="150" className='rounded-circle' />
                             </div>
                             {
@@ -93,51 +97,44 @@ const Profile = () => {
                                 </div>
                             }
                             <div className="col-12 px-5">
-                                <div className="container">
-                                    <div className="row justify-content-around mb-1">
-                                        <div className="col-4">Name</div>
-                                        <div className="col-7">{profileOwner.name}</div>
+                                <div className="ms-lg-4">
+                                    <div className="">
+                                        <p>Name:  {profileOwner.name}</p>
                                     </div>
-                                    <div className="row justify-content-around mb-1">
-                                        <div className="col-4">Email</div>
-                                        <div className="col-7">{profileOwner.email}</div>
+                                    <div className="">
+                                        <p>Email:  {profileOwner.email}</p>
                                     </div>
-                                    <div className="row justify-content-around mb-1">
-                                        <div className="col-4">Phone Number</div>
-                                        <div className="col-7">{profileOwner.phone}</div>
+                                    <div className="">
+                                        <p>Phone:  {profileOwner.phone}</p>
                                     </div>
-                                    <div className="row justify-content-around mb-1">
-                                        <div className="col-4">Division</div>
-                                        <div className="col-7">{profileOwner.division}</div>
+                                    <div className="">
+                                        <p>Division:  {profileOwner.division}</p>
                                     </div>
-                                    <div className="row justify-content-around mb-1">
-                                        <div className="col-4">Address</div>
-                                        <div className="col-7">{profileOwner.address}</div>
+                                    <div className="">
+                                        <p>Address:  {profileOwner.address}</p>
+                                        
                                     </div>
-                                    <div className="row justify-content-around mb-1">
-                                        <div className="col-4">Blood Group</div>
-                                        <div className="col-7">{type}</div>
+                                    <div className="">
+                                        <p>Blood Group:  {type}</p>
+                                        
                                     </div>
-                                    <div className="row justify-content-around mb-1">
-                                        <div className="col-4">Date Of Birth</div>
-                                        <div className="col-7">{profileOwner.dateOfBirth}</div>
+                                    <div className="">
+                                        <p>Date Of Birth:  {profileOwner.dateOfBirth}</p>
+                                     
                                     </div>
-                                    <div className="row justify-content-around mb-1">
-                                        <div className="col-4">Diabetes</div>
-                                        <div className="col-7">{profileOwner.diabetes ? "Yes" : "No"}</div>
+                                    <div className="">
+                                        <p>Diabetes:  {profileOwner.diabetes ? "Yes" : "No"}</p>
+                                       
                                     </div>
-                                    <div className="row justify-content-around mb-1">
-                                        <div className="col-4">Smoker</div>
-                                        <div className="col-7">{profileOwner.smoker ? "Yes" : "No"}</div>
+                                    <div className="mb-4">
+                                        <p>Smoker:  {profileOwner.smoker ? "Yes" : "No"}</p>
+                                     
                                     </div>
                                 </div>
                             </div>
-                            <div className='p-5 d-none d-lg-block'>
-
-                            </div>
                         </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-12 col-lg-7">
                         <div className="row gy-4">
                             {
                                 ProfileOwnerPost.map(post => <ProfilePost key={post._id} post={post} profileOwner={profileOwner}></ProfilePost>)

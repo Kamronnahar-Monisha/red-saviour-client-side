@@ -3,6 +3,7 @@ import './AllPostReports.css';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../../Shared/Loader/Loader';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const AllPostReports = () => {
 
@@ -54,11 +55,14 @@ const AllPostReports = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>All Post Reports</title>
+            </Helmet>
             {
                 isLoading ?
                     <Loader></Loader>
                     :
-                    <div className='w-75 box-shadow py-3 rounded ms-5 mt-5'>
+                    <div className='w-75 box-shadow py-3 rounded ms-5 my-5'>
                         <div className='ms-2 text-center'>
                             <p className='text-success'>
                                 Manage Reported Posts
@@ -66,13 +70,13 @@ const AllPostReports = () => {
                         </div>
                         <div className='px-5 py-1'>
                             <div className="row text-muted p-2 border-bottom">
-                                <div className="col-8">
+                                <div className="col-12 col-lg-8">
                                     Post Id
                                 </div>
-                                <div className="col-2 text-success">
+                                <div className="col-2 d-none d-lg-block text-success">
                                     Resolve
                                 </div>
-                                <div className="col-2 text-danger">
+                                <div className="col-2 d-none d-lg-block text-danger">
                                     Delete
                                 </div>
                             </div>
@@ -81,11 +85,11 @@ const AllPostReports = () => {
                                     <>
                                         {
                                             allPostReports.map(report => {
-                                                return <div className="row p-2 border-bottom">
-                                                    <div className="col-8">
+                                                return <div className="row p-2 border-bottom gy-2">
+                                                    <div className=" col-12 col-lg-8 ">
                                                         <Link to={`/post/${report.repotedId}`} className='text-decoration-none text-dark'>{report.repotedId}</Link>
                                                     </div>
-                                                    <div className="col-2">
+                                                    <div className=" col-6 col-lg-2">
                                                         {
                                                             report.resolve ?
                                                                 <button className="btn btn-sm btn-secondary">
@@ -97,7 +101,7 @@ const AllPostReports = () => {
                                                                 </button>
                                                         }
                                                     </div>
-                                                    <div className="col-2 text-danger">
+                                                    <div className="col-6 col-lg-2 text-danger">
                                                         {
                                                             <button className="btn btn-sm btn-danger" onClick={() => { handleDelete(report._id, report.repotedId) }}>
                                                                 Delete

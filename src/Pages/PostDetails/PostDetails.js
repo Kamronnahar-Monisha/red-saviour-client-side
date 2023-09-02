@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './PostDetails.css';
 import { Link, useLoaderData } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const PostDetails = () => {
     const post = useLoaderData();
@@ -30,9 +31,12 @@ const PostDetails = () => {
     }, [post.patient, post.bloodType])
 
     return (
-        <div className='w-50 mx-auto my-5 theme-color-shadow p-5 rounded'>
+        <div className='w-75 mx-auto my-5 theme-color-shadow p-5 rounded'>
+            <Helmet>
+                <title>Post Details</title>
+            </Helmet>
             <div className="row justify-content-between">
-                <div className='col-6'>
+                <div className='col-12 col-lg-6 order-2 order-lg-1'>
                     <p className='fs-6 fw-semibold'>Posted by <Link to={`/profile/${patientDetails.email}`} className='text-success text-decoration-none'>{patientDetails.name}</Link></p>
                     <p>Required Blood group: {type}</p>
                     <p>Blood Amount(in bags): {post.bloodAmount} bags</p>
@@ -40,7 +44,7 @@ const PostDetails = () => {
                     <p>Hospital Address: {post.hospitalAddress}</p>
                     <p>Date: {post.donationDate}</p>
                 </div>
-                <div className='col-3'>
+                <div className='col-12 col-lg-3 order-1 order-lg-2'>
                     <button className='btn btn-sm btn-warning me-3'>{post.status}</button>
                 </div>
             </div>

@@ -3,6 +3,7 @@ import './Notification.css';
 import { BsFillBellFill } from "react-icons/bs";
 import { AuthContext } from '../../Context/AuthProvider';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const Notification = () => {
     const { user } = useContext(AuthContext);
@@ -27,6 +28,9 @@ const Notification = () => {
 
     return (
         <div className="notification minimum-height">
+            <Helmet>
+                <title>Notifications</title>
+            </Helmet>
             <div className='container'>
                 <div className="row justify-content-center gy-3 my-5">
                     {
@@ -34,7 +38,7 @@ const Notification = () => {
                             <>
                                 {
                                     notifications.map(notification => {
-                                        return <div className="col-6 box-shadow rounded text-center p-2">
+                                        return <div className="col-10 col-lg-6 box-shadow rounded text-center p-2">
                                             <span className='text-success fs-4 mx-3'><BsFillBellFill /></span>
                                             You are selected for a
                                             <Link to={`/post/${notification.postId}`} className='text-decoration-none'>

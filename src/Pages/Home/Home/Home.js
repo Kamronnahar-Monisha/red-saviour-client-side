@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import './Home.css';
 import Showcase from '../Showcase/Showcase';
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
-    
+
     //make every post and donor up to date
     useEffect(() => {
         fetch('http://localhost:5000/make-posts-and-donors-upToDate')
@@ -21,6 +22,9 @@ const Home = () => {
     return (
         <div>
             <div style={homeBg}>
+                <Helmet>
+                    <title>Home</title>
+                </Helmet>
                 <Showcase></Showcase>
             </div>
         </div>

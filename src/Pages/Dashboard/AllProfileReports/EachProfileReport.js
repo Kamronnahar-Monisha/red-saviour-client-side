@@ -15,11 +15,11 @@ const EachProfileReport = ({report,handleResolve}) => {
     },[report.repotedId])
 
     return (
-        <div className="row p-2 border-bottom">
-            <div className="col-8">
+        <div className="row p-2 border-bottom gy-2" >
+            <div className="col-12 col-lg-8">
                 <Link to={`/profile/${repotedProfileDetails.email}`} className='text-decoration-none text-dark'>{report.repotedId}</Link>
             </div>
-            <div className="col-2">
+            <div className="col-6 col-lg-2">
                 {
                     report.resolve ?
                         <button className="btn btn-sm btn-secondary">

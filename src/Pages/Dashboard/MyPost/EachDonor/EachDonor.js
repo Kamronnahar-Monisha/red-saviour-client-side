@@ -64,21 +64,21 @@ const EachDonor = ({ post, currentDonor, postsRefetch }) => {
     return (
         <>
             {
-                    <div className='col-11 my-2 rounded p-2 shadow'>
-                        <div className="row">
-                            <div className="col-1">
+                    <div className='col-12 my-2 rounded p-2 shadow'>
+                        <div className="row gy-2">
+                            <div className="col-3 col-lg-1">
                                 <img className="rounded-circle me-3" height="40" width="40" src={donorDetails.photoURL} alt="donor" />
                             </div>
-                            <div className="col-4">
+                            <div className="col-8 col-lg-4">
                                 <p className='text-muted'>{donorDetails.name}</p>
                             </div>
                             {
                                 (donorDetails.status === 'confirmed') && (post._id !== donorDetails.donatedPost) ?
-                                    <div className="col-5">
+                                    <div className="col-12 col-lg-5">
                                         <button className="btn btn-sm btn-secondary">Already selected to another post</button>
                                     </div>
                                     :
-                                    <div className="col-7">
+                                    <div className="col-12 col-lg-7 ">
                                         {
                                             currentDonor.status === 'interested' ?
                                                 <button className="btn btn-sm btn-primary" onClick={() => handleDonorList('shortlisted')}>Short list</button>
@@ -86,7 +86,7 @@ const EachDonor = ({ post, currentDonor, postsRefetch }) => {
                                                 <button className="btn btn-sm btn-secondary">{currentDonor.status}</button>
                                         }
                                         <button className="ms-3 btn btn-sm btn-warning" onClick={() => handleDonorList('interested')}>Remove</button>
-                                        <button className="ms-3 btn btn-sm btn-danger" onClick={handleDelete}>Delete</button>
+                                        <button className="ms-lg-3 mt-2 mt-lg-0 btn btn-sm btn-danger" onClick={handleDelete}>Delete</button>
                                     </div>
                             }
                         </div>

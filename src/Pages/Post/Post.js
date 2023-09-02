@@ -63,7 +63,7 @@ const Post = () => {
                 .then(data => {
                     console.log(data);
                     toast.success('Successfully added a post .');
-                    navigate('/dashboard')
+                    navigate('/dashboard/MyPosts')
                 })
            
         }

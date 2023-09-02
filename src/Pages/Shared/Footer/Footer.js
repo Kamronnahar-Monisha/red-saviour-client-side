@@ -6,7 +6,7 @@ import { FaFacebookSquare, FaWhatsappSquare, FaInstagramSquare } from 'react-ico
 
 const Footer = () => {
     return (
-        <div className='footer py-5 text-white text-center text-lg-start'>
+        <div className='footer py-3 text-white text-center text-lg-start'>
             <div className="container">
                 <div className="row justify-content-around align-items-center gy-5">
                     <div className="col-lg-4">
@@ -30,19 +30,19 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className="col-lg-2">
-                        <h4 className='mb-lg-4 mb-2'>Quick Link</h4>
+                        <h5 className='mb-lg-4 mb-2'>Quick Link</h5>
                         <Link className="text-decoration-none text-white d-block mb-2" to='/'>Home</Link>
                         <Link className="text-decoration-none text-white d-block mb-2" to="/donationProcess">Donation Process</Link>
                         <Link className="text-decoration-none text-white d-block mb-2" to="/donationBenefit">Donation Benefit</Link>
                     </div>
                     <div className="col-lg-2">
-                        <h4 className='mb-lg-4 mb-2'>Donation</h4>
+                        <h5 className='mb-lg-4 mb-2'>Donation</h5>
                         <Link className="text-decoration-none text-white d-block mb-2">About</Link>
                         <Link className="text-decoration-none text-white d-block mb-2" to="/feed">Feed</Link>
                         <Link className="text-decoration-none text-white d-block mb-2">Terms & Condition</Link>
                     </div>
                     <div className="col-lg-2">
-                        <h4 className='mb-lg-4 mb-2'>HelpLine</h4>
+                        <h5 className='mb-lg-4 mb-2'>HelpLine</h5>
                         <Link className="text-decoration-none text-white d-block mb-2">Support Center</Link>
                         <Link className="text-decoration-none text-white d-block mb-2">Feedback</Link>
                         <Link className="text-decoration-none text-white d-block mb-2">Accessability</Link>

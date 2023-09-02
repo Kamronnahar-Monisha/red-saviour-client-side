@@ -76,7 +76,7 @@ const MyPostDetails = ({ post, userDetails, index, postsRefetch, setEachPost }) 
 
 
     return (
-        <div className='col-10 theme-color-shadow p-5 rounded'>
+        <div className='col-10 box-shadow p-5 rounded'>
             <div className="row justify-content-between">
                 <div className='col-6'>
                     <p className='fs-4 fw-semibold text-success'>Posted by <span className='text-success'>{userDetails.name}</span></p>

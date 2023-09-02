@@ -64,7 +64,7 @@ const EachDonor = ({ post, currentDonor, postsRefetch }) => {
     return (
         <>
             {
-                    <div className='col-8 my-2 rounded p-2 shadow'>
+                    <div className='col-11 my-2 rounded p-2 shadow'>
                         <div className="row">
                             <div className="col-1">
                                 <img className="rounded-circle me-3" height="40" width="40" src={donorDetails.photoURL} alt="donor" />

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './EachPost.css';
 import { confirmAlert } from 'react-confirm-alert';
 import { toast } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
+import { addReport } from '../../../hooks/useReport';
 
 const EachPost = ({ post, user }) => {
     const [patientDetails, setPatientDetails] = useState({});
@@ -19,11 +21,11 @@ const EachPost = ({ post, user }) => {
                 let bloodType = post.bloodType?.toUpperCase();
                 if (bloodType) {
                     if (bloodType[bloodType.length - 1] === 'P') {
-                        bloodType = bloodType.slice(0, -1) + ' +'
+                        bloodType = bloodType.slice(0, -1) + ' +';
                     }
                     else {
                         bloodType.pop();
-                        bloodType += ' -'
+                        bloodType += ' -';
                     }
                     setType(bloodType);
                 }
@@ -36,66 +38,7 @@ const EachPost = ({ post, user }) => {
             });
     }, [post.patient, post.bloodType, post.donors, user._id])
 
-
-    //handler for interested button
-    // function handleInterested() {
-    //     if (user.status === 'confirmed') {
-    //         confirmAlert({
-    //             message: `You was confirmed for a donation post on ${user.donationTime}. Did you donation process cancel?`,
-    //             buttons: [
-    //                 {
-    //                     label: 'Yes',
-    //                     onClick: () => {
-    //                         fetch(`http://localhost:5000/update-user-status?id=${user._id}&status=available`, {
-    //                             method: 'PATCH',
-    //                             headers: {
-    //                                 'Content-type': 'application/json'
-    //                             }
-    //                         })
-    //                             .then(res => res.json())
-    //                             .then(data => {
-    //                                 console.log(data);
-    //                                 const donor = {
-    //                                     donorId: user._id,
-    //                                     status: 'interested',
-    //                                     rating: 0,
-    //                                     feedback: ''
-    //                                 };
-
-    //                                 fetch(`http://localhost:5000/update-donors?id=${post._id}&purpose=add`, {
-    //                                     method: 'PATCH',
-    //                                     headers: {
-    //                                         'Content-type': 'application/json'
-    //                                     },
-    //                                     body: JSON.stringify({ donor })
-    //                                 })
-    //                                     .then(res => res.json())
-    //                                     .then((data => {
-    //                                         if (data[0].acknowledged) {
-    //                                             console.log(data);
-    //                                             setUserStatusInThisPost(data[1].status);
-    //                                         }
-    //                                     }))
-    //                                     .catch(error => alert(error.massage));
-    //                             })
-    //                             .catch(error => console.log(error.message))
-    //                     }
-    //                 },
-    //                 {
-    //                     label: 'No',
-    //                     onClick: () => {
-    //                         toast.error("You are already selected for another donation. So you can not apply for this donation now.")
-    //                     }
-    //                 }
-    //             ]
-    //         });
-    //     }
-    // }
-
-
-
-    //handler for interested button
-    function handleInterested() {
+    const handleInterestedDonorAdd = () => {
         const donor = {
             donorId: user._id,
             status: 'interested',
@@ -117,21 +60,82 @@ const EachPost = ({ post, user }) => {
                     setUserStatusInThisPost(data[1].status);
                 }
             }))
-            .catch(error => alert(error.massage));
+            .catch(error => console.log(error.error));
     }
 
 
+    //handler for interested button
+    function handleInterested() {
+        if (user.status === 'confirmed') {
+            confirmAlert({
+                message: `You was confirmed for a donation post on ${user.donationTime}. Did your donation process canceled?`,
+                buttons: [
+                    {
+                        label: 'Yes',
+                        onClick: () => {
+                            fetch(`http://localhost:5000/update-user-status?id=${user._id}&status=available`, {
+                                method: 'PATCH',
+                                headers: {
+                                    'Content-type': 'application/json'
+                                }
+                            })
+                                .then(res => res.json())
+                                .then(data => {
+                                    console.log(data);
+                                    handleInterestedDonorAdd();
+                                })
+                                .catch(error => console.log(error.error))
+                        }
+                    },
+                    {
+                        label: 'No',
+                        onClick: () => {
+                            toast.error("You are already selected for another donation. So you can not apply for this donation now.");
+                        }
+                    }
+                ]
+            });
+        }
+        else {
+            handleInterestedDonorAdd();
+        }
+    }
 
 
-
+    //handle roport
+    const handleReport = () => {
+        confirmAlert({
+            title: 'Are you sure ?',
+            message: 'Does this post speard nudity,false information or hate speech?',
+            buttons: [
+                {
+                    label: 'Yes I agree',
+                    onClick: () => {
+                        const report = {
+                            reporterId: user._id,
+                            repotedId: post._id,
+                            type: "post",
+                            resolve: false
+                        }
+                        addReport(report);
+                    }
+                },
+                {
+                    label: 'Close',
+                    onClick: () => {
+                    }
+                }
+            ]
+        });
+    }
 
 
     console.log(post);
     return (
-        <div className='col-10 theme-color-shadow p-5 rounded'>
+        <div className='col-10 box-shadow p-5 rounded'>
             <div className="row justify-content-between">
                 <div className='col-6'>
-                    <p className='fs-6 fw-semibold'>Posted by <span className='text-success'>{patientDetails.name}</span></p>
+                    <p className='fs-6 fw-semibold'>Posted by <Link to={`/profile/${patientDetails.email}`} className='text-success text-decoration-none'>{patientDetails.name}</Link></p>
                     <p>Required Blood group: {type}</p>
                     <p>Blood Amount(in bags): {post.bloodAmount} bags</p>
                     <p>Reason : {post.reason}</p>
@@ -146,7 +150,7 @@ const EachPost = ({ post, user }) => {
                 </div>
                 <div className='col-3'>
                     <button className='btn btn-sm btn-warning me-3'>{post.status}</button>
-                    <button className='btn btn-sm btn-danger'>Report</button>
+                    <button className='btn btn-sm btn-danger' onClick={handleReport}>Report</button>
                 </div>
             </div>
         </div>

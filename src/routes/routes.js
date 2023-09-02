@@ -12,6 +12,11 @@ import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import PrivateRoute from "../routes/PrivateRoute/PrivateRoute";
 import Feed from "../Pages/Feed/Feed/Feed";
 import Notification from "../Pages/Notification/Notification";
+import MyPost from "../Pages/Dashboard/MyPost/MyPost/MyPost";
+import DashboardLayout from "../Layout/DashBoardLayout/DashBoardLayout";
+import AllPostReports from "../Pages/Dashboard/AllPostReports/AllPostReports";
+import AllProfileReports from "../Pages/Dashboard/AllProfileReports/AllProfileReports";
+import PostDetails from "../Pages/PostDetails/PostDetails";
 
 
 export const router = createBrowserRouter([
@@ -37,23 +42,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/post',
-                element:<PrivateRoute> <Post></Post></PrivateRoute>
+                element: <PrivateRoute> <Post></Post></PrivateRoute>
             },
             {
                 path: '/feed',
-                element:<PrivateRoute> <Feed></Feed></PrivateRoute>
-            },
-            {
-                path: '/profile',
-                element: <Profile></Profile>
+                element: <PrivateRoute> <Feed></Feed></PrivateRoute>
             },
             {
                 path: '/notification',
-                element: <Notification></Notification>
-            },
-            {
-                path: '/dashboard',
-                element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>
+                element: <PrivateRoute><Notification></Notification></PrivateRoute>
             },
             {
                 path: '/donationBenefit',
@@ -62,6 +59,42 @@ export const router = createBrowserRouter([
             {
                 path: '/donationProcess',
                 element: <DonationProcess></DonationProcess>
+            },
+            {
+                path: "/profile/:email",
+                element: <PrivateRoute><Profile></Profile></PrivateRoute>,
+                loader: async ({ params }) => {
+                    return fetch(`http://localhost:5000/user/${params.email}`);
+                }
+            },
+            {
+                path: "/post/:id",
+                element: <PrivateRoute><PostDetails></PostDetails></PrivateRoute>,
+                loader: async ({ params }) => {
+                    return fetch(`http://localhost:5000/post/${params.id}`);
+                }
+            }
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <Dashboard></Dashboard>
+            },
+            {
+                path: '/dashboard/MyPosts',
+                element: <MyPost></MyPost>
+            },
+            {
+                path: '/dashboard/postsReport',
+                element: <AllPostReports></AllPostReports>
+            },
+            {
+                path: '/dashboard/profilesReport',
+                element: <AllProfileReports></AllProfileReports>
             },
         ]
     },

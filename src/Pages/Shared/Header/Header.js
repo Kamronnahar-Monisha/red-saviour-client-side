@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext} from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import logo from './../../../images/logo.png';
@@ -68,7 +68,7 @@ const Header = () => {
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <Link class="dropdown-item text-muted" to="/profile">Your Profile</Link>
+                                                    <Link class="dropdown-item text-muted" to={`/profile/${user.email}`}>Your Profile</Link>
                                                 </li>
                                                 <hr className='m-0 p-1' />
                                                 <li>

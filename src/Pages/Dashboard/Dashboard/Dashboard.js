@@ -1,31 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import './Dashboard.css';
-import MyPost from '../MyPost/MyPost/MyPost';
-import { AuthContext } from '../../../Context/AuthProvider';
+import dashboardImg from '../../../images/dashboard.gif';
+
 
 const Dashboard = () => {
-    const { user } = useContext(AuthContext);
-    const [userDetails, setUserDetails] = useState({});
-   
-    //fetching user full details
-    useEffect(() => {
-        fetch(`http://localhost:5000/users?email=${user.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setUserDetails(data);
-            });
-    }, [user.email])
-
-
     return (
-        <div>
-            {
-                (userDetails.role === "admin")&&
-                <div>
-                    hi
-                </div>
-            }
-             <MyPost></MyPost>
+        <div className='w-75 mx-auto mb-5'>
+            <img src={dashboardImg} alt="" className='w-75' />
         </div>
     );
 };

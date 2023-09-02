@@ -9,7 +9,7 @@ import CloseButtonModal from '../CloseButtonModal/CloseButtonModal';
 const MyPost = () => {
     const { user } = useContext(AuthContext);
     const [userDetails, setUserDetails] = useState({});
-    const [eachPost,setEachPost] = useState({});
+    const [eachPost, setEachPost] = useState({});
 
     //fetching user full details
     useEffect(() => {
@@ -31,18 +31,18 @@ const MyPost = () => {
     });
 
     return (
-        <div className='container py-5'>
-            <div className="row justify-content-center gy-5">
-                {
-                    isLoading ?
-                        <Loader></Loader>
-                        :
-                        myPosts.map((myPost, index) => <MyPostDetails key={myPost._id} post={myPost} userDetails={userDetails} index={index} postsRefetch={refetch} setEachPost={setEachPost}></MyPostDetails>)
+            <div className='container py-5'>
+                <div className="row justify-content-center gy-5">
+                    {
+                        isLoading ?
+                            <Loader></Loader>
+                            :
+                            myPosts.map((myPost, index) => <MyPostDetails key={myPost._id} post={myPost} userDetails={userDetails} index={index} postsRefetch={refetch} setEachPost={setEachPost}></MyPostDetails>)
 
-                }
+                    }
+                </div>
+                <CloseButtonModal eachPost={eachPost} postsRefetch={refetch} ></CloseButtonModal>
             </div>
-            <CloseButtonModal eachPost={eachPost} postsRefetch={refetch} ></CloseButtonModal>
-        </div>
     );
 };
 

@@ -1,7 +1,7 @@
 import { toast } from "react-hot-toast";
 
 const addReport = (report) => {
-    fetch('http://localhost:5000/report', {
+    fetch('https://red-saviour-server-side.onrender.com/report', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

@@ -6,7 +6,7 @@ const EachDonor = ({ post, currentDonor, postsRefetch }) => {
 
     //fetching donor details
     useEffect(() => {
-        fetch(`http://localhost:5000/users?id=${currentDonor.donorId}`)
+        fetch(`https://red-saviour-server-side.onrender.com/users?id=${currentDonor.donorId}`)
             .then(res => res.json())
             .then(data => setDonorDetails(data))
             .catch(error => console.log(error))
@@ -22,7 +22,7 @@ const EachDonor = ({ post, currentDonor, postsRefetch }) => {
             feedback: ''
         };
 
-        fetch(`http://localhost:5000/update-donors?id=${post._id}&purpose=add`, {
+        fetch(`https://red-saviour-server-side.onrender.com/update-donors?id=${post._id}&purpose=add`, {
             method: 'PATCH',
             headers: {
                 'Content-type': 'application/json'
@@ -44,7 +44,7 @@ const EachDonor = ({ post, currentDonor, postsRefetch }) => {
     //handle delete button
     const handleDelete = () => {
         const donor = currentDonor;
-        fetch(`http://localhost:5000/update-donors?id=${post._id}&purpose=delete`, {
+        fetch(`https://red-saviour-server-side.onrender.com/update-donors?id=${post._id}&purpose=delete`, {
             method: 'PATCH',
             headers: {
                 'Content-type': 'application/json'

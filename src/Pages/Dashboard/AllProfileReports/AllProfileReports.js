@@ -10,7 +10,7 @@ const AllProfileReports = () => {
     const { data: allProfileReports = [], refetch, isLoading } = useQuery({
         queryKey: ['allProfileReports'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/reports?type=profile`);
+            const res = await fetch(`https://red-saviour-server-side.onrender.com/reports?type=profile`);
             const data = await res.json();
             return data;
         }
@@ -19,7 +19,7 @@ const AllProfileReports = () => {
 
     //handle resolve
     const handleResolve = (id) => {
-        fetch(`http://localhost:5000/report?id=${id}`, {
+        fetch(`https://red-saviour-server-side.onrender.com/report?id=${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-type': 'application/json'

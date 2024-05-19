@@ -9,7 +9,7 @@ const CloseButtonModal = ({ eachPost, postsRefetch }) => {
 
 
     const handleModalSubmitButton = (data) => {
-        fetch(`http://localhost:5000/update-donor-feedback?id=${eachPost._id}`, {
+        fetch(`https://red-saviour-server-side.onrender.com/update-donor-feedback?id=${eachPost._id}`, {
             method: 'PATCH',
             headers: {
                 'Content-type': 'application/json'
@@ -20,7 +20,7 @@ const CloseButtonModal = ({ eachPost, postsRefetch }) => {
             .then((data => {
                 if (data.acknowledged) {
                     console.log(data);
-                    fetch(`http://localhost:5000/update-post-status?id=${eachPost._id}&status=closed`, {
+                    fetch(`https://red-saviour-server-side.onrender.com/update-post-status?id=${eachPost._id}&status=closed`, {
                         method: 'PATCH',
                         headers: {
                             'Content-type': 'application/json'

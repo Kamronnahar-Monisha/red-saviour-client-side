@@ -5,6 +5,7 @@ import './Register.css';
 import registerImg from '../../images/register-img.gif';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet';
 
 const Register = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -84,7 +85,7 @@ const Register = () => {
             "donationTime": "",
             "role": "user"
         };
-        fetch('http://localhost:5000/users', {
+        fetch('https://red-saviour-server-side.onrender.com/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -100,6 +101,9 @@ const Register = () => {
 
     return (
         <div className='container py-5'>
+            <Helmet>
+                <title>Please Register</title>
+            </Helmet>
             <div className="row justify-content-around align-items-start pb-5 pt-4 gy-5">
                 <div className="col-lg-6">
                     <img src={registerImg} alt="A girl log in a website" className='w-100' />

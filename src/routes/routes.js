@@ -64,14 +64,14 @@ export const router = createBrowserRouter([
                 path: "/profile/:email",
                 element: <PrivateRoute><Profile></Profile></PrivateRoute>,
                 loader: async ({ params }) => {
-                    return fetch(`http://localhost:5000/user/${params.email}`);
+                    return fetch(`https://red-saviour-server-side.onrender.com/user/${params.email}`);
                 }
             },
             {
                 path: "/post/:id",
                 element: <PrivateRoute><PostDetails></PostDetails></PrivateRoute>,
                 loader: async ({ params }) => {
-                    return fetch(`http://localhost:5000/post/${params.id}`);
+                    return fetch(`https://red-saviour-server-side.onrender.com/post/${params.id}`);
                 }
             }
         ]

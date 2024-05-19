@@ -5,7 +5,7 @@ const EachProfileReport = ({report,handleResolve}) => {
     const [repotedProfileDetails,setRepotedProfileDetails] = useState({});
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/users?id=${report.repotedId}`)
+        fetch(`https://red-saviour-server-side.onrender.com/users?id=${report.repotedId}`)
         .then(res=>res.json())
         .then(data=>{
             console.log(data);

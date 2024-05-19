@@ -12,7 +12,7 @@ const DashboardLayout = () => {
 
     //fetching user full details
     useEffect(() => {
-        fetch(`http://localhost:5000/users?email=${user.email}`)
+        fetch(`https://red-saviour-server-side.onrender.com/users?email=${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setUserDetails(data);

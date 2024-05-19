@@ -6,7 +6,7 @@ const ConfirmedDonor = ({ donor }) => {
 
     //fetching donor details
     useEffect(() => {
-        fetch(`http://localhost:5000/users?id=${donor.donorId}`)
+        fetch(`https://red-saviour-server-side.onrender.com/users?id=${donor.donorId}`)
             .then(res => res.json())
             .then(data => setDonorDetails(data))
             .catch(error => console.log(error))

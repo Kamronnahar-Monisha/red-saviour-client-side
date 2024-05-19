@@ -30,7 +30,7 @@ const MyPostDetails = ({ post, userDetails, index, postsRefetch, setEachPost }) 
             status: 'confirm'
         }
         //convert all shortlisted donor to confirmed donor
-        fetch(`http://localhost:5000/update-donors?id=${post._id}&purpose=confirm`, {
+        fetch(`https://red-saviour-server-side.onrender.com/update-donors?id=${post._id}&purpose=confirm`, {
             method: 'PATCH',
             headers: {
                 'Content-type': 'application/json'
@@ -42,7 +42,7 @@ const MyPostDetails = ({ post, userDetails, index, postsRefetch, setEachPost }) 
                 if (data[0].acknowledged) {
                     console.log(data);
                     //updating post status to waiting
-                    fetch(`http://localhost:5000/update-post-status?id=${post._id}&status=waiting`, {
+                    fetch(`https://red-saviour-server-side.onrender.com/update-post-status?id=${post._id}&status=waiting`, {
                         method: 'PATCH',
                         headers: {
                             'Content-type': 'application/json'
@@ -53,7 +53,7 @@ const MyPostDetails = ({ post, userDetails, index, postsRefetch, setEachPost }) 
                             if (data.acknowledged) {
                                 console.log(data);
                                 //update users status to confirmed to the all confirmed donor
-                                fetch(`http://localhost:5000/update-users-status?id=${post._id}&status=confirmed`, {
+                                fetch(`https://red-saviour-server-side.onrender.com/update-users-status?id=${post._id}&status=confirmed`, {
                                     method: 'PATCH',
                                     headers: {
                                         'Content-type': 'application/json'

@@ -11,13 +11,13 @@ const Feed = () => {
     const [postsWithSameBloodType, setPostsWithSameBloodType] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users?email=${user.email}`)
+        fetch(`https://red-saviour-server-side.onrender.com/users?email=${user.email}`)
             .then(res => res.json())
             .then(data => setUserDetails(data));
     }, [user.email])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/posts-list-of-same-blood-type?bloodType=${userDetails.bloodType}&id=${userDetails._id}`)
+        fetch(`https://red-saviour-server-side.onrender.com/posts-list-of-same-blood-type?bloodType=${userDetails.bloodType}&id=${userDetails._id}`)
             .then(res => res.json())
             .then(data => {
                 data = data.filter(eachPost => eachPost.status !== 'closed');

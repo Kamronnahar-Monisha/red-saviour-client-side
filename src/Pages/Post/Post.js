@@ -13,7 +13,7 @@ const Post = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users?email=${user.email}`)
+        fetch(`https://red-saviour-server-side.onrender.com/users?email=${user.email}`)
             .then(res => res.json())
             .then(data => setUserDetails(data));
     }, [user.email])
@@ -53,7 +53,7 @@ const Post = () => {
                 status: "ongoing"
             };
             reset();
-            fetch('http://localhost:5000/post', {
+            fetch('https://red-saviour-server-side.onrender.com/post', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

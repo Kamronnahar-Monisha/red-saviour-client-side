@@ -8,7 +8,7 @@ const EachFeedback = ({ confirmedUser,register,errors }) => {
 
     //fetching donor details
     useEffect(() => {
-        fetch(`http://localhost:5000/users?id=${confirmedUser.donorId}`)
+        fetch(`https://red-saviour-server-side.onrender.com/users?id=${confirmedUser.donorId}`)
             .then(res => res.json())
             .then(data => setDonorDetails(data))
             .catch(error => console.log(error))

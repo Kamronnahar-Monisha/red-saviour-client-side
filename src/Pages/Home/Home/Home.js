@@ -7,7 +7,7 @@ const Home = () => {
 
     //make every post and donor up to date
     useEffect(() => {
-        fetch('http://localhost:5000/make-posts-and-donors-upToDate')
+        fetch('https://red-saviour-server-side.onrender.com/make-posts-and-donors-upToDate')
             .then(res => res.json())
             .then(data => console.log(data))
             .catch(error => console.log(error))

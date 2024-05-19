@@ -12,7 +12,7 @@ const EachPost = ({ post, user }) => {
 
     //fetching user by id from post's patient id
     useEffect(() => {
-        fetch(`http://localhost:5000/users?id=${post.patient}`)
+        fetch(`https://red-saviour-server-side.onrender.com/users?id=${post.patient}`)
             .then(res => res.json())
             .then(data => {
                 setPatientDetails(data);
@@ -46,7 +46,7 @@ const EachPost = ({ post, user }) => {
             feedback: ''
         };
 
-        fetch(`http://localhost:5000/update-donors?id=${post._id}&purpose=add`, {
+        fetch(`https://red-saviour-server-side.onrender.com/update-donors?id=${post._id}&purpose=add`, {
             method: 'PATCH',
             headers: {
                 'Content-type': 'application/json'
@@ -73,7 +73,7 @@ const EachPost = ({ post, user }) => {
                     {
                         label: 'Yes',
                         onClick: () => {
-                            fetch(`http://localhost:5000/update-user-status?id=${user._id}&status=available`, {
+                            fetch(`https://red-saviour-server-side.onrender.com/update-user-status?id=${user._id}&status=available`, {
                                 method: 'PATCH',
                                 headers: {
                                     'Content-type': 'application/json'

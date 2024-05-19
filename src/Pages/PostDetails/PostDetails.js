@@ -10,7 +10,7 @@ const PostDetails = () => {
 
     //fetching user by id from post's patient id
     useEffect(() => {
-        fetch(`http://localhost:5000/users?id=${post.patient}`)
+        fetch(`https://red-saviour-server-side.onrender.com/users?id=${post.patient}`)
             .then(res => res.json())
             .then(data => {
                 setPatientDetails(data);

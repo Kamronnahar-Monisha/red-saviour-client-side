@@ -12,11 +12,11 @@ const Notification = () => {
 
     //fetching user full details
     useEffect(() => {
-        fetch(`http://localhost:5000/users?email=${user.email}`)
+        fetch(`https://red-saviour-server-side.onrender.com/users?email=${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setUserDetails(data);
-                fetch(`http://localhost:5000/notifications?id=${userDetails._id}`)
+                fetch(`https://red-saviour-server-side.onrender.com/notifications?id=${userDetails._id}`)
                     .then(res => res.json())
                     .then(data => setNotifications(data))
                     .catch(error => console.log(error));

@@ -17,7 +17,7 @@ const Profile = () => {
 
     //user details fetching
     useEffect(() => {
-        fetch(`http://localhost:5000/users?email=${user.email}`)
+        fetch(`https://red-saviour-server-side.onrender.com/users?email=${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setUserDetails(data);
@@ -40,7 +40,7 @@ const Profile = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/posts?id=${profileOwner._id}`)
+        fetch(`https://red-saviour-server-side.onrender.com/posts?id=${profileOwner._id}`)
             .then(res => res.json())
             .then(data => {
                 setProfileOwnerPost(data);
@@ -136,6 +136,9 @@ const Profile = () => {
                     </div>
                     <div className="col-12 col-lg-7">
                         <div className="row gy-4">
+                            {
+                                (ProfileOwnerPost?.length === 0) && <div className='text-center text-success mt-5'>Any Donation request has not been posted yet</div>
+                            }
                             {
                                 ProfileOwnerPost.map(post => <ProfilePost key={post._id} post={post} profileOwner={profileOwner}></ProfilePost>)
                             }

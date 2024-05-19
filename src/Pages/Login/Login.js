@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../Context/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
     const { register, reset, formState: { errors }, handleSubmit } = useForm();
@@ -50,6 +51,9 @@ const Login = () => {
 
     return (
         <div className='container py-5'>
+            <Helmet>
+                <title>Please Login</title>
+            </Helmet>
             <div className="row justify-content-around align-items-center pb-5 pt-4 gy-5">
                 <div className="col-lg-5">
                     <img src={loginImg} alt="A girl log in a website" className='w-100' />

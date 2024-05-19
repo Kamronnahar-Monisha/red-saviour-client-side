@@ -10,7 +10,7 @@ const AllPostReports = () => {
     const { data: allPostReports = [], refetch, isLoading } = useQuery({
         queryKey: ['allPostReports'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/reports?type=post`);
+            const res = await fetch(`https://red-saviour-server-side.onrender.com/reports?type=post`);
             const data = await res.json();
             return data;
         }
@@ -18,7 +18,7 @@ const AllPostReports = () => {
 
     //handle resolve
     const handleResolve = (id) => {
-        fetch(`http://localhost:5000/report?id=${id}`, {
+        fetch(`https://red-saviour-server-side.onrender.com/report?id=${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-type': 'application/json'
@@ -34,7 +34,7 @@ const AllPostReports = () => {
 
     //handle Delete
     const handleDelete = (reportId, postId) => {
-        fetch(`http://localhost:5000/report?id=${reportId}`, {
+        fetch(`https://red-saviour-server-side.onrender.com/report?id=${reportId}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
@@ -43,7 +43,7 @@ const AllPostReports = () => {
                 refetch();
             }))
             .catch(error => console.log(error.massage));
-        fetch(`http://localhost:5000/post?id=${postId}`, {
+        fetch(`https://red-saviour-server-side.onrender.com/post?id=${postId}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
